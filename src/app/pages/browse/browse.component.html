@@ -1,1 +1,10 @@
-<p>browse works!</p>
+<p>Logged In User</p>
+<p>Email: {{ userEmail }}</p>
+<p>Name: {{ userName }}</p>
+<p>Profile Image URL: {{ userProfileImageURL }}</p>
+<img
+  *ngIf="userProfileImageURL !== 'ProfileImageURL Not Available'"
+  [src]="userProfileImageURL"
+  alt="ProfileImageURL Not Available"
+/>
+<button (click)="auth.signOut()">Sign Out</button>
