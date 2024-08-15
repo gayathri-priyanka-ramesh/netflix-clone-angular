@@ -1,0 +1,57 @@
+<!-- --------------------------------------------------Section-------------------------------------------------- -->
+<ng-container *ngFor="let section of sectionDetails; let i = index">
+  <div
+    [ngClass]="{
+      'md:flex-row': i % 2 === 0,
+      'md:flex-row-reverse': i % 2 !== 0
+    }"
+    class="flex flex-col items-center justify-evenly py-8 gap-10 text-center lg:text-left md:w-11/12 mx-auto"
+  >
+    <!-- -------------------------Info------------------------- -->
+    <div class="w-11/12 md:w-1/2">
+      <h1 class="mb-2">{{ section.title }}</h1>
+      <p>{{ section.description }}</p>
+    </div>
+    <!-- -------------------------End Info------------------------- -->
+
+    <!-- -------------------------Media------------------------- -->
+    <div class="w-11/12 md:w-1/2 relative">
+      <img
+        [src]="section.imageUrl"
+        [alt]="section.imageAlt"
+        class="w-full h-auto"
+      />
+      <!-- <div
+        *ngIf="section.subImageUrl"
+        class="absolute inset-[22em_10em] bg-[rgba(0,0,0,0.8)] flex gap-5 p-2 items-center justify-evenly border-2 border-[#232323] rounded-[1em] h-fit w-fit"
+      >
+        <img
+          [src]="section.subImageUrl"
+          [alt]="section.subImageAlt"
+          class="h-[5em]"
+        />
+        <div class="justify-self-start mr-16">
+          <p class="font-bold">Stranger Things</p>
+          <p class="text-[#0071eb]">Downloading...</p>
+        </div>
+        <div class="text-blue-700 text-3xl">
+          <i class="bx bxs-download"></i>
+        </div>
+      </div> -->
+      <div class="absolute inset-[1em_4.5em_2em] -z-10">
+        <video
+          *ngIf="section.videoUrl"
+          [src]="section.videoUrl"
+          autoplay
+          playsinline
+          muted
+          loop
+          class="w-full h-full object-contain"
+        ></video>
+      </div>
+    </div>
+    <!-- -------------------------End Media------------------------- -->
+  </div>
+  <hr *ngIf="i < sectionDetails.length" />
+</ng-container>
+<!-- --------------------------------------------------End Section-------------------------------------------------- -->

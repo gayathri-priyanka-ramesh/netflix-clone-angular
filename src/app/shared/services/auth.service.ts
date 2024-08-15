@@ -29,9 +29,13 @@ export class AuthService {
     console.log('Response Credential Token:', responseCredential);
     const payload = this.decodeToken(responseCredential);
     console.log('Payload:', payload);
-    if (typeof sessionStorage !== 'undefined')
+    if (typeof sessionStorage !== 'undefined') {
       sessionStorage.setItem('signedInUser', JSON.stringify(payload));
-    this.ngZone.run(() => this.router.navigate(['browse']));
+      this.ngZone.run(() => this.router.navigate(['browse']));
+    } else
+      console.warn(
+        'Not running in the browser, Session Storage is not available'
+      );
   }
   // -------------------------Handle Signed In User Response-------------------------
   handleResponse = (res: GsiResponse) => {
@@ -53,7 +57,7 @@ export class AuthService {
   GsiButtonConfiguration = {
     type: 'icon',
     theme: 'filled_black',
-    size: 'medium',
+    size: 'large',
     shape: 'circle',
   };
 
@@ -94,7 +98,7 @@ export class AuthService {
     google.accounts.id.prompt();
     console.log('Google Sign-In Triggered');
   }
-  // --------------------------------------------------End of Google Sign In--------------------------------------------------
+  // --------------------------------------------------End Google Sign In--------------------------------------------------
 
   // --------------------------------------------------Signed In User Information Retrieval--------------------------------------------------
   retriveUserInformation(): string[] {
@@ -104,21 +108,28 @@ export class AuthService {
       );
       console.log('userInformation:', this.userInformation);
     }
+    console.warn(
+      'Not running in the browser, Session Storage is not available'
+    );
     return [
       this.userInformation?.email || 'Email Not Available',
       this.userInformation?.name || 'Name Not Available',
       this.userInformation?.picture || 'ProfileImageURL Not Available',
     ];
   }
-  // --------------------------------------------------End of Signed In User Information Retrieval--------------------------------------------------
+  // --------------------------------------------------End Signed In User Information Retrieval--------------------------------------------------
 
   // --------------------------------------------------Sign Out--------------------------------------------------
   signOut() {
-    google.accounts.id.disableAutoSelect();
-    if (typeof sessionStorage !== 'undefined')
+    if (typeof sessionStorage !== 'undefined') {
+      google.accounts.id.disableAutoSelect();
       sessionStorage.removeItem('signedInUser');
-    this.ngZone.run(() => this.router.navigate(['/']));
-    console.log('User Signed Out');
+      this.ngZone.run(() => this.router.navigate(['/']));
+      console.log('User Signed Out');
+    } else
+      console.warn(
+        'Not running in the browser, Session Storage is not available'
+      );
   }
-  // --------------------------------------------------End of Sign Out--------------------------------------------------
+  // --------------------------------------------------End Sign Out--------------------------------------------------
 }

@@ -1,11 +1,14 @@
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { AuthService } from '../../shared/services/auth.service';
+import { HeaderComponent } from '../../shared/components/header/header.component';
+import { SectionComponent } from '../../shared/components/section/section.component';
+import { AccordianComponent } from '../../shared/components/accordian/accordian.component';
 
 @Component({
   selector: 'app-landing',
   standalone: true,
-  imports: [],
+  imports: [HeaderComponent, SectionComponent, AccordianComponent],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss',
 })
@@ -26,5 +29,5 @@ export class LandingComponent implements OnInit {
       );
     }
   }
-  // -------------------------End of Initialize Google Sign In only in Browser Platform-------------------------
+  // -------------------------End Initialize Google Sign In only in Browser Platform-------------------------
 }

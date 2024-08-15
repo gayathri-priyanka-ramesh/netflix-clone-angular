@@ -1,0 +1,33 @@
+<!-- --------------------------------------------------FAQ Section-------------------------------------------------- -->
+<h1 class="text-center mt-10 mb-5">Frequently Asked Questions</h1>
+<!-- -------------------------Accordian------------------------- -->
+<div
+  *ngFor="let faq of faqs; let i = index"
+  class="w-11/12 lg:w-4/5 mx-auto"
+  id="accordian-container"
+>
+  <div
+    class="bg-[#2d2d2d] hover:bg-[#414141] mt-2 p-5 flex justify-between items-center cursor-pointer question"
+  >
+    <p>{{ faq.question }}</p>
+    <i class="bx bx-plus text-5xl accordian-icon"></i>
+  </div>
+  <p class="bg-[#2d2d2d] mt-0.5 p-5 hidden answer">{{ faq.answer }}</p>
+</div>
+<!-- -------------------------End Accordian------------------------- -->
+
+<!-- -------------------------GSI------------------------- -->
+<div class="text-center my-10">
+  <p class="mb-3">
+    Suscipit dolor cupiditate? Excepturi tempore asperiores? Repudiandae maiores
+    perspiciatis blanditiis!
+  </p>
+  <button
+    class="bg-[#f30f20] hover:bg-[#c11119] font-[bold] px-[1em] py-[0.75em] rounded-[0.25em]"
+    (click)="this.auth.triggerGSI()"
+  >
+    Get Started <i class="bx bxs-chevron-right"></i>
+  </button>
+</div>
+<!-- -------------------------End GSI------------------------- -->
+<!-- --------------------------------------------------End FAQ Section-------------------------------------------------- -->

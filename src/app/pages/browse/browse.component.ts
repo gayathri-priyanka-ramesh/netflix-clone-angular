@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './browse.component.scss',
 })
 export class BrowseComponent implements OnInit {
-  auth = inject(AuthService);
+  protected auth = inject(AuthService);
 
   // Signed In User Information Variables
   userEmail: string;
@@ -25,5 +25,5 @@ export class BrowseComponent implements OnInit {
     console.log('Name:', this.userName);
     console.log('ProfileImage:', this.userProfileImageURL);
   }
-  // -------------------------End of Extract Signed In User Information-------------------------
+  // -------------------------End Extract Signed In User Information-------------------------
 }

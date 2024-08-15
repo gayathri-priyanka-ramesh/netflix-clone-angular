@@ -1,2 +1,32 @@
-<button (click)="this.auth.triggerGSI()">Sign In</button>
-<div id="gsiButton"></div>
+<app-header />
+<!-- --------------------------------------------------Hero Section-------------------------------------------------- -->
+<div
+  id="hero"
+  class="w-full lg:min-h-[90vh] text-center flex flex-col items-center justify-center gap-[1em] p-[3em]"
+>
+  <h1 class="mt-[70px]">Lorem ipsum dolor sit amet.</h1>
+  <p>Voluptatum, consequatur. Accusamus, libero quas.</p>
+  <p>
+    Suscipit dolor cupiditate? Excepturi tempore asperiores? Repudiandae maiores
+    perspiciatis blanditiis!
+  </p>
+
+  <!-- <input
+    class="bg-[rgba(0,0,0,0.5)] w-2/5 p-[1em] rounded-[0.25em]"
+    type="email"
+    name=""
+    id=""
+    placeholder="Email address"
+  /> -->
+  <button
+    class="bg-[#f30f20] hover:bg-[#c11119] font-[bold] px-[1em] py-[0.75em] rounded-[0.25em]"
+    (click)="this.auth.triggerGSI()"
+  >
+    Get Started <i class="bx bxs-chevron-right"></i>
+  </button>
+</div>
+<!-- --------------------------------------------------End Hero Section-------------------------------------------------- -->
+<hr />
+<app-section />
+<app-accordian />
+<hr />
