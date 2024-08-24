@@ -20,7 +20,7 @@ export class LandingComponent implements OnInit {
 
   // -------------------------Initialize Google Sign In only in Browser Platform-------------------------
   ngOnInit(): void {
-    console.log('Platform Id:', this.platformId);
+    // console.log('Platform Id:', this.platformId);
     if (isPlatformBrowser(this.platformId)) {
       this.auth.getGSIScript();
     } else {

@@ -1,1 +1,37 @@
-<p>banner works!</p>
+<!-- --------------------------------------------------Banner-------------------------------------------------- -->
+<div class="w-full h-[25vh] lg:h-[80vh] overflow-hidden relative mt-20">
+  <!-- -------------------------Video------------------------- -->
+  <iframe
+    *ngIf="!isBackdrop"
+    [src]="videoURL"
+    [title]="title"
+    class="w-full h-full absolute scale-[1.5] origin-center"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen
+  ></iframe>
+  <!-- -------------------------End Video------------------------- -->
+
+  <!-- -------------------------Image------------------------- -->
+  <div *ngIf="isBackdrop" class="w-full h-full absolute">
+    <img [src]="backdropURL" [alt]="title" class="scale-[1.5] origin-center" />
+  </div>
+  <!-- -------------------------End Image Video------------------------- -->
+
+  <!-- -------------------------End Details------------------------- -->
+  <div class="flex items-end p-10 h-full absolute bg-gradient-to-r from-black">
+    <div class="w-full" [ngClass]="{ 'lg:w-4/6': !isBackdrop }">
+      <h1>{{ title }}</h1>
+      <p *ngIf="!isBackdrop" class="text-justify my-3 hidden lg:block">
+        {{ overview | description : 211 }}
+      </p>
+      <div class="flex justify-start gap-5 mt-2">
+        <button><i class="bx bx-movie-play"></i> Play</button>
+        <button class="bg-gray-500 bg-opacity-50">More Info</button>
+      </div>
+    </div>
+  </div>
+  <!-- -------------------------End Details------------------------- -->
+</div>
+<!-- --------------------------------------------------End Banner-------------------------------------------------- -->

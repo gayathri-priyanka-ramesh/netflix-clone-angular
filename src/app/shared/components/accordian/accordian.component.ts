@@ -59,7 +59,7 @@ export class AccordianComponent implements OnInit {
         document.querySelectorAll('.accordian-icon');
       questionList.forEach((ques: Element, i: number) => {
         ques.addEventListener('click', () => {
-          console.log(`Question at index ${i} is clicked`);
+          // console.log(`Question at index ${i} is clicked`);
           answerList.forEach((answer: Element, j: number) => {
             if (i !== j) answer.classList.add('hidden');
             else answer.classList.toggle('hidden');

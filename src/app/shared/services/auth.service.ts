@@ -19,16 +19,17 @@ export class AuthService {
   // -------------------------Decode Signed In User Payload-------------------------
   private decodeToken(token: string) {
     const JWT_Token = token.split('.');
-    console.log('JWT_Token:', JWT_Token);
+    // console.log('JWT_Token:', JWT_Token);
     const decodedTokenPayload = JSON.parse(atob(JWT_Token[1]));
     return decodedTokenPayload;
   }
+  // -------------------------End Decode Signed In User Payload-------------------------
 
   // -------------------------Handle Signed In User Credential-------------------------
   handleCredential(responseCredential: string) {
-    console.log('Response Credential Token:', responseCredential);
+    // console.log('Response Credential Token:', responseCredential);
     const payload = this.decodeToken(responseCredential);
-    console.log('Payload:', payload);
+    // console.log('Payload:', payload);
     if (typeof sessionStorage !== 'undefined') {
       sessionStorage.setItem('signedInUser', JSON.stringify(payload));
       this.ngZone.run(() => this.router.navigate(['browse']));
@@ -37,14 +38,17 @@ export class AuthService {
         'Not running in the browser, Session Storage is not available'
       );
   }
+  // -------------------------End Handle Signed In User Credential-------------------------
+
   // -------------------------Handle Signed In User Response-------------------------
   handleResponse = (res: GsiResponse) => {
-    console.log('Sign In Response:', res);
+    // console.log('Sign In Response:', res);
     if (res && res.credential) {
       const responseToken = res.credential;
       this.handleCredential(responseToken);
     }
   };
+  // -------------------------End Handle Signed In User Response-------------------------
 
   // -------------------------Client Instance Configuration-------------------------
   IdConfiguration = {
@@ -52,6 +56,7 @@ export class AuthService {
       '557734782030-m3gg8h5a56ggs9nqvotckfils62lfb5u.apps.googleusercontent.com',
     callback: this.handleResponse,
   };
+  // -------------------------End Client Instance Configuration-------------------------
 
   // -------------------------Google Sign In Button Configuration-------------------------
   GsiButtonConfiguration = {
@@ -60,17 +65,19 @@ export class AuthService {
     size: 'large',
     shape: 'circle',
   };
+  // -------------------------End Google Sign In Button Configuration-------------------------
 
   // -------------------------Initialize Google Sign In-------------------------
   initializeGoogleSignIn(): void {
-    console.log('Google Sign In Object', google);
+    // console.log('Google Sign In Object', google);
     google.accounts.id.initialize(this.IdConfiguration);
     google.accounts.id.renderButton(
       document.getElementById('gsiButton'),
       this.GsiButtonConfiguration
     );
-    console.log('Google Sign-In initialized');
+    // console.log('Google Sign-In initialized');
   }
+  // -------------------------End Initialize Google Sign In-------------------------
 
   // -------------------------Get GSI Script to Initialize Google Sign In-------------------------
   getGSIScript() {
@@ -78,7 +85,7 @@ export class AuthService {
       'script[src="https://accounts.google.com/gsi/client"]'
     );
     if (script) {
-      console.log('GSI Script:', script);
+      // console.log('GSI Script:', script);
       this.initializeGoogleSignIn();
     } else {
       const checkGoogleObject = setInterval(() => {
@@ -89,15 +96,18 @@ export class AuthService {
           console.warn('Waiting for GSI Script to Load...');
         }
       }, 100);
+      6665;
     }
   }
+  // -------------------------End Get GSI Script to Initialize Google Sign In-------------------------
 
   // -------------------------Trigger Google Sign In Flow-------------------------
   triggerGSI(): void {
-    console.log('Google Sign In Object', google);
+    // console.log('Google Sign In Object', google);
     google.accounts.id.prompt();
-    console.log('Google Sign-In Triggered');
+    // console.log('Google Sign-In Triggered');
   }
+  // -------------------------End Trigger Google Sign In Flow-------------------------
   // --------------------------------------------------End Google Sign In--------------------------------------------------
 
   // --------------------------------------------------Signed In User Information Retrieval--------------------------------------------------
@@ -106,15 +116,15 @@ export class AuthService {
       this.userInformation = JSON.parse(
         sessionStorage.getItem('signedInUser') || '{}'
       );
-      console.log('userInformation:', this.userInformation);
-    }
-    console.warn(
-      'Not running in the browser, Session Storage is not available'
-    );
+      // console.log('userInformation:', this.userInformation);
+    } else
+      console.warn(
+        'Not running in the browser, Session Storage is not available'
+      );
     return [
       this.userInformation?.email || 'Email Not Available',
       this.userInformation?.name || 'Name Not Available',
-      this.userInformation?.picture || 'ProfileImageURL Not Available',
+      this.userInformation?.picture || '../../../../assets/user.jpg',
     ];
   }
   // --------------------------------------------------End Signed In User Information Retrieval--------------------------------------------------
@@ -125,7 +135,7 @@ export class AuthService {
       google.accounts.id.disableAutoSelect();
       sessionStorage.removeItem('signedInUser');
       this.ngZone.run(() => this.router.navigate(['/']));
-      console.log('User Signed Out');
+      // console.log('User Signed Out');
     } else
       console.warn(
         'Not running in the browser, Session Storage is not available'

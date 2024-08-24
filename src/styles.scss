@@ -2,6 +2,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url("../node_modules/swiper/swiper.scss");
 
 h1 {
   @apply text-[3em] font-bold;
@@ -11,4 +12,7 @@ p {
 }
 hr {
   @apply border-[#232323] border-y-4;
+}
+button {
+  @apply bg-[#f30f20] hover:bg-[#c11119] font-[bold] px-[1em] py-[0.75em] rounded-[0.25em] transition delay-100 duration-[1000ms];
 }

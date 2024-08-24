@@ -1,10 +1,79 @@
-<p>Logged In User</p>
-<p>Email: {{ userEmail }}</p>
-<p>Name: {{ userName }}</p>
-<p>Profile Image URL: {{ userProfileImageURL }}</p>
-<img
-  *ngIf="userProfileImageURL !== 'ProfileImageURL Not Available'"
-  [src]="userProfileImageURL"
-  alt="ProfileImageURL Not Available"
+<!-- --------------------------------------------------Header-------------------------------------------------- -->
+<app-header [isUserSignedIn]="isUserSignedIn" />
+<div class="mt-[70px]"></div>
+<!-- --------------------------------------------------Header-------------------------------------------------- -->
+
+<!-- --------------------------------------------------Banner - Trending Movies-------------------------------------------------- -->
+<app-banner
+  [title]="
+    (trendingBannerDetail$ | async)?.original_title ??
+    (trendingBannerDetail$ | async)?.title
+  "
+  [overview]="(trendingBannerDetail$ | async)?.overview"
+  [key]="(trendingBannerVideo$ | async)?.results[0].key"
 />
-<button (click)="auth.signOut()">Sign Out</button>
+<!-- --------------------------------------------------End Banner - Trending Movies-------------------------------------------------- -->
+
+<!-- --------------------------------------------------Carousel - Trending Movies-------------------------------------------------- -->
+<!-- <app-carousel [videoContents]="trendingMovies" title="Trending Movies" /> -->
+<!-- --------------------------------------------------End Carousel - Trending Movies-------------------------------------------------- -->
+
+<!-- --------------------------------------------------Banner - TV Shows-------------------------------------------------- -->
+<app-banner
+  [title]="tvShowBannerTitle"
+  [key]="tvShowBannerImageKey"
+  [isBackdrop]="true"
+/>
+<!-- --------------------------------------------------End Banner - TV Shows-------------------------------------------------- -->
+
+<!-- --------------------------------------------------Carousel - TV Shows-------------------------------------------------- -->
+<!-- <app-carousel [videoContents]="tvShows" title="TV Shows" /> -->
+<!-- --------------------------------------------------End Carousel - TV Shows-------------------------------------------------- -->
+
+<!-- --------------------------------------------------Banner - Popular Movies-------------------------------------------------- -->
+<!-- <app-banner
+  [title]="popularBannerTitle"
+  [overview]="popularBannerOverview"
+  [key]="popularBannerVideoKey"
+/> -->
+<!-- --------------------------------------------------End Banner - Popular Movies-------------------------------------------------- -->
+
+<!-- --------------------------------------------------Carousel - Popular Movies-------------------------------------------------- -->
+<!-- <app-carousel [videoContents]="popularMovies" title="Popular Movies" /> -->
+<!-- --------------------------------------------------End Carousel - Popular Movies-------------------------------------------------- -->
+
+<!-- --------------------------------------------------Banner - Top Rated Movies-------------------------------------------------- -->
+<app-banner
+  [title]="topRatedBannerTitle"
+  [overview]="topRatedBannerOverview"
+  [key]="topRatedBannerVideoKey"
+/>
+<!-- --------------------------------------------------End Banner - Top Rated Movies-------------------------------------------------- -->
+
+<!-- --------------------------------------------------Carousel - Top Rated Movies-------------------------------------------------- -->
+<!-- <app-carousel [videoContents]="topRatedMovies" title="Top Rated Movies" /> -->
+<!-- --------------------------------------------------End Carousel - Top Rated Movies-------------------------------------------------- -->
+
+<!-- --------------------------------------------------Banner - Now Playing Movies-------------------------------------------------- -->
+<!-- <app-banner
+  [title]="nowPlayingBannerTitle"
+  [overview]="nowPlayingBannerOverview"
+  [key]="nowPlayingBannerVideoKey"
+/> -->
+<!-- --------------------------------------------------End Banner - Now Playing Movies-------------------------------------------------- -->
+
+<!-- --------------------------------------------------Carousel - Now Playing Movies-------------------------------------------------- -->
+<!-- <app-carousel [videoContents]="nowPlayingMovies" title="Now Playing Movies" /> -->
+<!-- --------------------------------------------------End Carousel - Now Playing Movies-------------------------------------------------- -->
+
+<!-- --------------------------------------------------Banner - Upcoming Movies-------------------------------------------------- -->
+<app-banner
+  [title]="upcomingBannerTitle"
+  [overview]="upcomingBannerOverview"
+  [key]="upcomingBannerVideoKey"
+/>
+<!-- --------------------------------------------------End Banner - Upcoming Movies-------------------------------------------------- -->
+
+<!-- --------------------------------------------------End Banner - Trending Movies-------------------------------------------------- -->
+<!-- <app-carousel [videoContents]="upcomingMovies" title="Upcoming Movies" /> -->
+<!-- --------------------------------------------------End Carousel - Upcoming Movies-------------------------------------------------- -->
