@@ -27,7 +27,7 @@ export class BannerComponent implements OnChanges {
   videoURL = this.urlSanitizer.bypassSecurityTrustResourceUrl(
     `https://www.youtube.com/embed/${this.key}?autoplay=1&mute=1&loop=1&playlist=${this.key}&controls=0&showinfo=0&modestbranding=1&rel=0`
   );
-  backdropURL = `https://image.tmdb.org/t/p/original/${this.key}`;
+  backdropURL = `https://image.tmdb.org/t/p/original${this.key}`;
   // -------------------------End Banner Info-------------------------
 
   // -------------------------Detect Banner Info Changes-------------------------
@@ -36,7 +36,7 @@ export class BannerComponent implements OnChanges {
       this.videoURL = this.urlSanitizer.bypassSecurityTrustResourceUrl(
         `https://www.youtube.com/embed/${this.key}?autoplay=1&mute=1&loop=1&playlist=${this.key}&controls=0&showinfo=0&modestbranding=1&rel=0`
       );
-      this.backdropURL = `https://image.tmdb.org/t/p/original/${this.key}`;
+      this.backdropURL = `https://image.tmdb.org/t/p/original${this.key}`;
     }
   }
   // -------------------------End Detect Banner Info Changes-------------------------

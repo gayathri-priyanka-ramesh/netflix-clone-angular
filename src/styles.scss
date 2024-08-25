@@ -16,3 +16,18 @@ hr {
 button {
   @apply bg-[#f30f20] hover:bg-[#c11119] font-[bold] px-[1em] py-[0.75em] rounded-[0.25em] transition delay-100 duration-[1000ms];
 }
+
+::-webkit-scrollbar {
+  height: 3px;
+  width: 11px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #f30f20;
+  border-radius: 50%;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #c11119;
+}

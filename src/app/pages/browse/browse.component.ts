@@ -109,9 +109,9 @@ export class BrowseComponent implements OnInit {
         // -------------------------Assigning movie lists-------------------------
         this.trendingMovies = res.trending.results as Movie[];
         this.tvShows = res.tvShow.results as Movie[];
-        this.popularMovies = res.popular.results as Movie[];
+        this.popularMovies = res.popular.results.reverse() as Movie[];
         this.topRatedMovies = res.topRated.results as Movie[];
-        this.nowPlayingMovies = res.nowPlaying.results as Movie[];
+        this.nowPlayingMovies = res.nowPlaying.results.reverse() as Movie[];
         this.upcomingMovies = res.upcoming.results as Movie[];
 
         // -------------------------Retrieve Banner Information for each Category-------------------------

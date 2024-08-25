@@ -18,32 +18,32 @@ export class AccordianComponent implements OnInit {
     {
       question: 'Architecto, minus magnam?',
       answer:
-        'Aut delectus consectetur nostrum id error eius maiores, sit nisi mollitia magni alias dolore voluptate quo aperiam.',
+        'Aut delectus consectetur nostrum id error eius maiores, sit nisi mollitia magni alias dolore voluptate quo aperiam. Consequatur sunt sint tenetur blanditiis et, animi quibusdam dolores necessitatibus maiores cupiditate delectus quo itaque velit facilis officia impedit architecto. Sapiente, in.',
     },
     {
       question: 'Esse tempore exercitationem magni?',
       answer:
-        'Eius ducimus impedit nemo a, laboriosam nobis error atque, adipisci commodi placeat vel tempore odit excepturi totam inventore debitis at molestias dolores.',
+        'Eius ducimus impedit nemo a, laboriosam nobis error atque, adipisci commodi placeat vel tempore odit excepturi totam inventore debitis at molestias dolores. Tempora corporis deleniti rerum illo ipsa iure ullam ratione minima obcaecati excepturi. Consequatur, minima nam. Incidunt aperiam tempore est similique reprehenderit molestiae.',
     },
     {
       question: 'Expedita eos maiores vitae eius?',
       answer:
-        'Iusto temporibus fugiat, asperiores odit sapiente alias doloribus eos libero provident obcaecati amet distinctio vel rem pariatur.',
+        'Iusto temporibus fugiat, asperiores odit sapiente alias doloribus eos libero provident obcaecati amet distinctio vel rem pariatur. Non fugit illo accusamus cum adipisci. Praesentium dolores quod voluptates, magnam animi facere natus quidem dolore totam nulla iure cumque, perferendis doloribus.',
     },
     {
       question: 'Quibusdam, ducimus explicabo?',
       answer:
-        'Quaerat quod similique, velit esse fuga aut minima enim dolorem nisi explicabo modi expedita quos quo recusandae doloribus inventore, tenetur consectetur repellendus.',
+        'Quaerat quod similique, velit esse fuga aut minima enim dolorem nisi explicabo modi expedita quos quo recusandae doloribus inventore, tenetur consectetur repellendus. Quibusdam officia soluta perferendis in consequatur eligendi totam, harum vel odio sit quia nihil voluptates inventore, praesentium veritatis consectetur, libero quaerat eum.',
     },
     {
       question: 'Distinctio quaerat quo nostrum?',
       answer:
-        'Cupiditate dolor nemo sed aut neque eaque velit veritatis exercitationem praesentium, dolorum enim accusamus est, officiis quam.',
+        'Cupiditate dolor nemo sed aut neque eaque velit veritatis exercitationem praesentium, dolorum enim accusamus est, officiis quam. Facere rerum repellat ut commodi impedit at eius in expedita, deserunt repudiandae, veniam perferendis tempore quasi! Error ullam amet inventore aspernatur animi.',
     },
     {
       question: 'Dicta earum quos quasi consequuntur?',
       answer:
-        'Modi totam consequuntur animi fuga assumenda quasi vel error soluta iusto quia, quidem vero voluptatibus recusandae sequi deserunt sapiente a ipsum adipisci?',
+        'Modi totam consequuntur animi fuga assumenda quasi vel error soluta iusto quia, quidem vero voluptatibus recusandae sequi deserunt sapiente a ipsum adipisci. Rem pariatur eos aut molestiae aliquid tempore ipsam perferendis odit veniam modi alias officiis quam nemo, animi ullam, cum necessitatibus, repellendus exercitationem.',
     },
   ];
   // --------------------------------------------------End FAQ Details--------------------------------------------------
