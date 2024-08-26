@@ -14,7 +14,6 @@ import { ImagePipe } from '../../pipes/image.pipe';
 export class CarouselComponent {
   // -------------------------Carousel Info-------------------------
   @Input() videoContents: Movie[];
-  @Input() title: string;
   // -------------------------End Carousel Info-------------------------
 
   // --------------------------------------------------Current Content Details--------------------------------------------------
@@ -22,7 +21,9 @@ export class CarouselComponent {
 
   // -------------------------Set Current Content-------------------------
   setHoverContent(content: Movie) {
-    this.selectedContent = content.original_title ?? content.title;
+    this.selectedContent =
+      content.original_title ?? content.title ?? content.original_name;
+    // console.log('Selected Content:', this.selectedContent);
   }
   // -------------------------End Set Current Content-------------------------
 

@@ -1,8 +1,9 @@
 <!-- --------------------------------------------------Banner-------------------------------------------------- -->
-<div class="w-full h-[25vh] lg:h-[80vh] overflow-hidden relative mt-20">
+<h1 class="px-10 mb-2 mt-8">{{ category }}</h1>
+<div class="w-full h-[25vh] lg:h-[80vh] overflow-hidden relative">
   <!-- -------------------------Video------------------------- -->
   <iframe
-    *ngIf="!isBackdrop"
+    *ngIf="!isBackdrop === true"
     [src]="videoURL"
     [title]="title"
     class="w-full h-full absolute scale-[1.5] origin-center"

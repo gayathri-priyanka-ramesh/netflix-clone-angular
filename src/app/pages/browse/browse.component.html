@@ -1,79 +1,113 @@
-<!-- --------------------------------------------------Header-------------------------------------------------- -->
-<app-header [isUserSignedIn]="isUserSignedIn" />
 <div class="mt-[70px]"></div>
-<!-- --------------------------------------------------Header-------------------------------------------------- -->
 
-<!-- --------------------------------------------------Banner - Trending Movies-------------------------------------------------- -->
-<app-banner
-  [title]="
-    (trendingBannerDetail$ | async)?.original_title ??
-    (trendingBannerDetail$ | async)?.title
-  "
-  [overview]="(trendingBannerDetail$ | async)?.overview"
-  [key]="(trendingBannerVideo$ | async)?.results[0].key"
-/>
+<!-- --------------------------------------------------Browse Category-------------------------------------------------- -->
+<ng-container *ngFor="let section of movieBannerCarousel">
+  <div #{{section.templateRef}} class="scroll-mt-[70px]">
+    <!-- -------------------------Banner------------------------- -->
+    <app-banner
+      [category]="section.category"
+      [title]="section.title"
+      [overview]="section.overview"
+      [key]="section.key"
+      [isBackdrop]="section.isBackdrop"
+    />
+  </div>
+  <!-- -------------------------End Banner------------------------- -->
+
+  <!-- -------------------------Carousel------------------------- -->
+  <app-carousel [videoContents]="section.videoContents" />
+  <!-- -------------------------End Carousel------------------------- -->
+</ng-container>
+<!-- --------------------------------------------------End Browse Category-------------------------------------------------- -->
+
+<!-- <div #trending class="scroll-mt-[70px]">
+  <app-banner
+    category="Trending Movies"
+    [title]="
+      (trendingBannerDetail$ | async)?.original_title ??
+      (trendingBannerDetail$ | async)?.title
+    "
+    [overview]="(trendingBannerDetail$ | async)?.overview"
+    [key]="(trendingBannerVideo$ | async)?.results[0].key"
+  />
+</div> -->
 <!-- --------------------------------------------------End Banner - Trending Movies-------------------------------------------------- -->
 
 <!-- --------------------------------------------------Carousel - Trending Movies-------------------------------------------------- -->
-<app-carousel [videoContents]="trendingMovies" title="Trending Movies" />
+<!-- <app-carousel [videoContents]="trendingMovies" /> -->
 <!-- --------------------------------------------------End Carousel - Trending Movies-------------------------------------------------- -->
 
 <!-- --------------------------------------------------Banner - TV Shows-------------------------------------------------- -->
-<app-banner
-  [title]="tvShowBannerTitle"
-  [key]="tvShowBannerImageKey"
-  [isBackdrop]="true"
-/>
+<!-- <div #tvShow class="scroll-mt-[70px]">
+  <app-banner
+    category="TV Shows"
+    [title]="tvShowBannerTitle"
+    [key]="tvShowBannerImageKey"
+    [isBackdrop]="true"
+  />
+</div> -->
 <!-- --------------------------------------------------End Banner - TV Shows-------------------------------------------------- -->
 
 <!-- --------------------------------------------------Carousel - TV Shows-------------------------------------------------- -->
-<app-carousel [videoContents]="tvShows" title="TV Shows" />
+<!-- <app-carousel [videoContents]="tvShows" /> -->
 <!-- --------------------------------------------------End Carousel - TV Shows-------------------------------------------------- -->
 
 <!-- --------------------------------------------------Banner - Popular Movies-------------------------------------------------- -->
-<app-banner
-  [title]="popularBannerTitle"
-  [overview]="popularBannerOverview"
-  [key]="popularBannerVideoKey"
-/>
+<!-- <div #popular class="scroll-mt-[70px]">
+  <app-banner
+    category="Popular Movies"
+    [title]="popularBannerTitle"
+    [overview]="popularBannerOverview"
+    [key]="popularBannerVideoKey"
+  />
+</div> -->
 <!-- --------------------------------------------------End Banner - Popular Movies-------------------------------------------------- -->
 
 <!-- --------------------------------------------------Carousel - Popular Movies-------------------------------------------------- -->
-<app-carousel [videoContents]="popularMovies" title="Popular Movies" />
+<!-- <app-carousel [videoContents]="popularMovies" /> -->
 <!-- --------------------------------------------------End Carousel - Popular Movies-------------------------------------------------- -->
 
 <!-- --------------------------------------------------Banner - Top Rated Movies-------------------------------------------------- -->
-<app-banner
-  [title]="topRatedBannerTitle"
-  [overview]="topRatedBannerOverview"
-  [key]="topRatedBannerVideoKey"
-/>
+<!-- <div #topRated class="scroll-mt-[70px]">
+  <app-banner
+    category="Top Rated Movies"
+    [title]="topRatedBannerTitle"
+    [overview]="topRatedBannerOverview"
+    [key]="topRatedBannerVideoKey"
+  />
+</div> -->
 <!-- --------------------------------------------------End Banner - Top Rated Movies-------------------------------------------------- -->
 
 <!-- --------------------------------------------------Carousel - Top Rated Movies-------------------------------------------------- -->
-<app-carousel [videoContents]="topRatedMovies" title="Top Rated Movies" />
+<!-- <app-carousel [videoContents]="topRatedMovies" /> -->
 <!-- --------------------------------------------------End Carousel - Top Rated Movies-------------------------------------------------- -->
 
 <!-- --------------------------------------------------Banner - Now Playing Movies-------------------------------------------------- -->
-<app-banner
-  [title]="nowPlayingBannerTitle"
-  [overview]="nowPlayingBannerOverview"
-  [key]="nowPlayingBannerVideoKey"
-/>
+<!-- <div #nowPlaying class="scroll-mt-[70px]">
+  <app-banner
+    category="Now Playing Movies"
+    [title]="nowPlayingBannerTitle"
+    [overview]="nowPlayingBannerOverview"
+    [key]="nowPlayingBannerVideoKey"
+  />
+</div> -->
 <!-- --------------------------------------------------End Banner - Now Playing Movies-------------------------------------------------- -->
 
 <!-- --------------------------------------------------Carousel - Now Playing Movies-------------------------------------------------- -->
-<app-carousel [videoContents]="nowPlayingMovies" title="Now Playing Movies" />
+<!-- <app-carousel [videoContents]="nowPlayingMovies" /> -->
 <!-- --------------------------------------------------End Carousel - Now Playing Movies-------------------------------------------------- -->
 
 <!-- --------------------------------------------------Banner - Upcoming Movies-------------------------------------------------- -->
-<app-banner
-  [title]="upcomingBannerTitle"
-  [overview]="upcomingBannerOverview"
-  [key]="upcomingBannerVideoKey"
-/>
+<!-- <div #upcoming class="scroll-mt-[70px]">
+  <app-banner
+    category="Upcoming Movies"
+    [title]="upcomingBannerTitle"
+    [overview]="upcomingBannerOverview"
+    [key]="upcomingBannerVideoKey"
+  />
+</div> -->
 <!-- --------------------------------------------------End Banner - Upcoming Movies-------------------------------------------------- -->
 
 <!-- --------------------------------------------------End Banner - Trending Movies-------------------------------------------------- -->
-<app-carousel [videoContents]="upcomingMovies" title="Upcoming Movies" />
+<!-- <app-carousel [videoContents]="upcomingMovies" /> -->
 <!-- --------------------------------------------------End Carousel - Upcoming Movies-------------------------------------------------- -->

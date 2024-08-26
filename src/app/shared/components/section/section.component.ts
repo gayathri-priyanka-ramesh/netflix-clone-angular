@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SectionDetails } from '../../interfaces/section-details.interface';
+import { SectionDetails } from '../../interfaces/sectionDetails.interface';
 import { CommonModule } from '@angular/common';
 
 @Component({

@@ -2,7 +2,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url("../node_modules/swiper/swiper.scss");
 
 h1 {
   @apply text-[3em] font-bold;
@@ -15,6 +14,9 @@ hr {
 }
 button {
   @apply bg-[#f30f20] hover:bg-[#c11119] font-[bold] px-[1em] py-[0.75em] rounded-[0.25em] transition delay-100 duration-[1000ms];
+}
+li {
+  @apply w-fit my-3 relative hover:text-[#f30f20] before:bg-[#f30f20] before:content-["_"] before:w-[0%] before:h-px before:absolute before:transition-[500ms] before:duration-[500ms] before:delay-100 before:bottom-0 hover:before:w-full;
 }
 
 ::-webkit-scrollbar {

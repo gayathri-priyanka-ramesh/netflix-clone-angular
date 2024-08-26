@@ -20,10 +20,11 @@ export class BannerComponent implements OnChanges {
   private urlSanitizer = inject(DomSanitizer);
 
   // -------------------------Banner Info-------------------------
+  @Input({ required: true }) category: string;
   @Input({ required: true }) title: string = '';
   @Input() overview: string = '';
   @Input({ required: true }) key: string = '';
-  @Input() isBackdrop: boolean;
+  @Input() isBackdrop: boolean | undefined;
   videoURL = this.urlSanitizer.bypassSecurityTrustResourceUrl(
     `https://www.youtube.com/embed/${this.key}?autoplay=1&mute=1&loop=1&playlist=${this.key}&controls=0&showinfo=0&modestbranding=1&rel=0`
   );

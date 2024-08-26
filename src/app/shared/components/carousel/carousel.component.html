@@ -1,51 +1,53 @@
 <!-- --------------------------------------------------Carousel-------------------------------------------------- -->
-<div>
-  <h1 class="px-10 my-3">{{ title }}</h1>
-  <div class="flex overflow-x-scroll overflow-y-clip cursor-grabbing">
-    <ng-container *ngFor="let content of videoContents; let i = index">
-      <!-- --------------------------------------------------Slide-------------------------------------------------- -->
+<div class="flex overflow-x-scroll overflow-y-clip cursor-grabbing mt-2">
+  <ng-container *ngFor="let content of videoContents; let i = index">
+    <!-- --------------------------------------------------Slide-------------------------------------------------- -->
+    <div
+      class="min-w-[30%] lg:min-w-[15%] origin-bottom-left hover:scale-110 hover:z-10 transition delay-100 duration-[500ms]"
+      [ngClass]="{
+        'origin-bottom-left': i === 0,
+        'origin-bottom-right': i === videoContents.length - 1
+      }"
+    >
       <div
-        class="min-w-[30%] lg:min-w-[15%] origin-bottom-left hover:scale-110 hover:z-10 transition delay-100 duration-[500ms]"
-        [ngClass]="{
-          'origin-bottom-left': i === 0,
-          'origin-bottom-right': i === videoContents.length - 1
-        }"
+        (mouseenter)="setHoverContent(content)"
+        (mouseleave)="clearHoverContent()"
+        class="relative"
       >
-        <div
-          (mouseenter)="setHoverContent(content)"
-          (mouseleave)="clearHoverContent()"
-          class="relative"
-        >
-          <!-- -------------------------Image------------------------- -->
-          <img [src]="content.poster_path | image" alt="" />
-          <!-- -------------------------End Image------------------------- -->
+        <!-- -------------------------Image------------------------- -->
+        <img [src]="content.poster_path | image" alt="" />
+        <!-- -------------------------End Image------------------------- -->
 
-          <!-- -------------------------Content Info------------------------- -->
+        <!-- -------------------------Content Info------------------------- -->
+        <div
+          *ngIf="
+            content.original_title === this.selectedContent ||
+            content.title === this.selectedContent ||
+            content.original_name === this.selectedContent
+          "
+        >
           <div
-            *ngIf="
-              content.original_title === this.selectedContent ||
-              content.title === this.selectedContent
-            "
+            class="cursor-pointer absolute top-1/3 p-2 bg-gradient-to-r from-black h-full"
           >
-            <div
-              class="cursor-pointer absolute top-1/3 p-2 bg-gradient-to-r from-black h-full"
-            >
-              <p class="font-semibold">{{ content.original_title }}</p>
-              <p class="text-xs my-2 text-justify">
-                {{ content.overview | description : 117 }}
-              </p>
-            </div>
-            <div class="cursor-pointer absolute bottom-8 px-2">
-              <p class="text-sm text-[#f30f20]">
-                Vote Average: {{ content.vote_average }}
-              </p>
-            </div>
+            <p class="font-semibold">
+              {{
+                content.original_title || content.title || content.original_name
+              }}
+            </p>
+            <p class="text-xs my-2 text-justify">
+              {{ content.overview | description : 117 }}
+            </p>
           </div>
-          <!-- -------------------------End Content Info------------------------- -->
+          <div class="cursor-pointer absolute bottom-8 px-2">
+            <p class="text-sm text-[#f30f20]">
+              Vote Average: {{ content.vote_average }}
+            </p>
+          </div>
         </div>
+        <!-- -------------------------End Content Info------------------------- -->
       </div>
-      <!-- --------------------------------------------------End Slide-------------------------------------------------- -->
-    </ng-container>
-  </div>
+    </div>
+    <!-- --------------------------------------------------End Slide-------------------------------------------------- -->
+  </ng-container>
 </div>
 <!-- --------------------------------------------------End Carousel-------------------------------------------------- -->

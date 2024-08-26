@@ -1,18 +1,95 @@
 <!-- --------------------------------------------------Header-------------------------------------------------- -->
 <nav
-  class="fixed bg-[rgba(0,0,0,0.75)] z-10 max-h-[70px] w-full flex justify-between items-center px-[1em] md:px-[4em] py-2.5 top-0"
+  class="fixed bg-[rgba(0,0,0,0.75)] z-10 max-h-[70px] w-full flex justify-between items-center px-[1em] md:px-[2em] py-2.5 top-0"
 >
   <img class="h-[5em]" src="../../../assets/logo.png" alt="NetFlix Logo" />
-  <div *ngIf="!isUserSignedIn" id="gsiButton"></div>
+
+  <div id="gsiButton"></div>
+
   <div *ngIf="isUserSignedIn" class="flex items-center justify-evenly gap-3">
-    <p class="hidden lg:block">
-      Welcome
-      <span class="text-[#f30f20]">{{ userName }}</span> !
-    </p>
-    <img [src]="userProfileImageURL" alt="userName" class="w-11 rounded-full" />
-    <button (click)="toggleModal()">
-      Sign Out <i class="bx bx-log-out"></i>
-    </button>
+    <!-- -------------------------Category Menu------------------------- -->
+    <ul
+      id="menu"
+      class="hidden absolute bg-[rgba(0,0,0,0.75)] right-0 top-[60px] p-5 lg:me-5 lg:static lg:bg-transparent lg:right-auto lg:top-auto lg:px-0 lg:py-0 text-base lg:flex lg:gap-10"
+    >
+      <li
+        (click)="scrollToCategory('trending')"
+        [ngClass]="{
+          'font-bold text-[#f30f20]': activeCategory === 'trending'
+        }"
+      >
+        Trending
+      </li>
+      <li
+        (click)="scrollToCategory('tvShow')"
+        [ngClass]="{
+          'font-bold text-[#f30f20]': activeCategory === 'tvShow'
+        }"
+      >
+        TV Shows
+      </li>
+      <li
+        (click)="scrollToCategory('popular')"
+        [ngClass]="{
+          'font-bold text-[#f30f20]': activeCategory === 'popular'
+        }"
+      >
+        Popular
+      </li>
+      <li
+        (click)="scrollToCategory('topRated')"
+        [ngClass]="{
+          'font-bold text-[#f30f20]': activeCategory === 'topRated'
+        }"
+      >
+        Top Rated
+      </li>
+      <li
+        (click)="scrollToCategory('nowPlaying')"
+        [ngClass]="{
+          'font-bold text-[#f30f20]': activeCategory === 'nowPlaying'
+        }"
+      >
+        Now Playing
+      </li>
+      <li
+        (click)="scrollToCategory('upcoming')"
+        [ngClass]="{
+          'font-bold text-[#f30f20]': activeCategory === 'upcoming'
+        }"
+      >
+        Upcoming
+      </li>
+    </ul>
+    <!-- -------------------------End Category Menu------------------------- -->
+
+    <!-- -------------------------Profile Information------------------------- -->
+    <img
+      [src]="userProfileImageURL"
+      [alt]="userName"
+      (click)="toggleProfileInfo()"
+      class="w-11 rounded-full"
+    />
+    <div
+      id="profileInfo"
+      (mouseleave)="toggleProfileInfo()"
+      class="hidden absolute bg-[rgba(0,0,0,0.75)] right-0 top-[60px] p-5 text-center"
+    >
+      <p>{{ userName }}</p>
+      <small class="block mb-3">{{ userEmail }}</small>
+      <button (click)="toggleModal()">
+        Sign Out <i class="bx bx-log-out"></i>
+      </button>
+    </div>
+    <!-- -------------------------Profile Information------------------------- -->
+
+    <!-- -------------------------Category Menu Icon------------------------- -->
+    <i
+      id="menuIcon"
+      (click)="toggleMenu()"
+      class="bx bx-menu-alt-right text-[#f30f20] text-5xl lg:hidden"
+    ></i>
+    <!-- -------------------------End Category Menu Icon------------------------- -->
   </div>
 </nav>
 <!-- --------------------------------------------------End Header-------------------------------------------------- -->
@@ -28,7 +105,7 @@
       <button (click)="toggleModal()">
         Stay Here <i class="bx bx-happy"></i>
       </button>
-      <button (click)="auth.signOut()">Leave <i class="bx bx-sad"></i></button>
+      <button (click)="signOut()">Leave <i class="bx bx-sad"></i></button>
     </div>
   </div>
 </div>

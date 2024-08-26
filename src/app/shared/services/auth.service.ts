@@ -4,14 +4,19 @@ declare var google: any;
 import { Injectable, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../interfaces/user.interface';
-import { GsiResponse } from '../interfaces/gsi-response.interface';
+import { GsiResponse } from '../interfaces/gsiResponse.interface';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  // Signed In User Information
+  // -------------------------Signed In User Information-------------------------
+  private userSignedIn = new BehaviorSubject<boolean>(false);
+  userSignedIn$ = this.userSignedIn.asObservable();
+  isUserSignedIn: boolean = false;
   userInformation: User;
+  // -------------------------End Signed In User Information-------------------------
 
   constructor(private ngZone: NgZone, private router: Router) {}
 
@@ -32,6 +37,8 @@ export class AuthService {
     // console.log('Payload:', payload);
     if (typeof sessionStorage !== 'undefined') {
       sessionStorage.setItem('signedInUser', JSON.stringify(payload));
+      this.userSignedIn.next(true);
+      this.toggleSignInButton();
       this.ngZone.run(() => this.router.navigate(['browse']));
     } else
       console.warn(
@@ -75,7 +82,7 @@ export class AuthService {
       document.getElementById('gsiButton'),
       this.GsiButtonConfiguration
     );
-    // console.log('Google Sign-In initialized');
+    console.log('Google Sign-In initialized');
   }
   // -------------------------End Initialize Google Sign In-------------------------
 
@@ -85,7 +92,7 @@ export class AuthService {
       'script[src="https://accounts.google.com/gsi/client"]'
     );
     if (script) {
-      // console.log('GSI Script:', script);
+      console.log('GSI Script:', script);
       this.initializeGoogleSignIn();
     } else {
       const checkGoogleObject = setInterval(() => {
@@ -111,8 +118,12 @@ export class AuthService {
   // --------------------------------------------------End Google Sign In--------------------------------------------------
 
   // --------------------------------------------------Signed In User Information Retrieval--------------------------------------------------
-  retriveUserInformation(): string[] {
+  retriveUserInformation(): [boolean, string, string, string] {
     if (typeof sessionStorage !== 'undefined') {
+      this.isUserSignedIn = sessionStorage.getItem('signedInUser') !== null;
+      if (this.userSignedIn.value !== this.isUserSignedIn)
+        this.userSignedIn.next(this.isUserSignedIn);
+      // console.log('isUserSignedIn:', this.isUserSignedIn);
       this.userInformation = JSON.parse(
         sessionStorage.getItem('signedInUser') || '{}'
       );
@@ -122,6 +133,7 @@ export class AuthService {
         'Not running in the browser, Session Storage is not available'
       );
     return [
+      this.isUserSignedIn,
       this.userInformation?.email || 'Email Not Available',
       this.userInformation?.name || 'Name Not Available',
       this.userInformation?.picture || '../../../../assets/user.jpg',
@@ -134,6 +146,8 @@ export class AuthService {
     if (typeof sessionStorage !== 'undefined') {
       google.accounts.id.disableAutoSelect();
       sessionStorage.removeItem('signedInUser');
+      this.userSignedIn.next(false);
+      this.toggleSignInButton();
       this.ngZone.run(() => this.router.navigate(['/']));
       // console.log('User Signed Out');
     } else
@@ -142,4 +156,11 @@ export class AuthService {
       );
   }
   // --------------------------------------------------End Sign Out--------------------------------------------------
+
+  // --------------------------------------------------Toggle GSI Button--------------------------------------------------
+  toggleSignInButton(): void {
+    const gsiButton = document.getElementById('gsiButton');
+    gsiButton?.classList.toggle('hidden');
+  }
+  // --------------------------------------------------End Toggle GSI Button--------------------------------------------------
 }
