@@ -41,8 +41,6 @@ export class BrowseComponent implements OnInit, AfterViewInit {
   isUserSignedIn: boolean = true;
 
   // -------------------------Banner Info-------------------------
-  // trendingBannerDetail$ = new Observable<any>();
-  // trendingBannerVideo$ = new Observable<any>();
   trendingBannerTitle: string;
   trendingBannerOverview: string;
   trendingBannerVideoKey: string;
@@ -100,23 +98,6 @@ export class BrowseComponent implements OnInit, AfterViewInit {
           // console.log('nowPlayingMovies:', nowPlaying);
           // console.log('upcomingMovies:', upcoming);
 
-          // this.trendingBannerDetail$ = this.movie.getBannerDetail(
-          //   trending.results[0].id
-          // );
-          // this.trendingBannerVideo$ = this.movie.getBannerVideo(
-          //   trending.results[0].id
-          // );
-          // this.trendingBannerDetail$.subscribe((trendingBannerDetail) => {
-          //   // console.log('trendingBannerDetail:', trendingBannerDetail);
-          //   this.trendingBannerTitle =
-          //     trendingBannerDetail.original_title || trendingBannerDetail.title;
-          //   this.trendingBannerOverview = trendingBannerDetail.overview;
-          // });
-          // this.trendingBannerVideo$.subscribe((trendingBannerVideo) => {
-          //   // console.log('trendingBannerVideo:', trendingBannerVideo);
-          //   this.trendingBannerVideoKey = trendingBannerVideo.results[0].key;
-          // });
-
           this.tvShowBannerTitle = tvShow.results[0].original_name;
           this.tvShowBannerImageKey = tvShow.results[0].backdrop_path;
           // console.log('TV Show Banner Title:', this.tvShowBannerTitle);
@@ -133,7 +114,7 @@ export class BrowseComponent implements OnInit, AfterViewInit {
         })
       )
       .subscribe((res: any) => {
-        console.log('Response:', res);
+        // console.log('Response:', res);
 
         // -------------------------Assigning movie lists-------------------------
         this.trendingMovies = res.trending.results as Movie[];
@@ -144,12 +125,12 @@ export class BrowseComponent implements OnInit, AfterViewInit {
         this.nowPlayingMovies = res.nowPlaying.results as Movie[];
         this.nowPlayingMovies.reverse();
         this.upcomingMovies = res.upcoming.results as Movie[];
-        console.log('trendingMovies:', this.trendingMovies);
-        console.log('tvShows:', this.tvShows);
-        console.log('popularMovies:', this.popularMovies);
-        console.log('topRatedMovies:', this.topRatedMovies);
-        console.log('nowPlayingMovies:', this.nowPlayingMovies);
-        console.log('upcomingMovies:', this.upcomingMovies);
+        // console.log('trendingMovies:', this.trendingMovies);
+        // console.log('tvShows:', this.tvShows);
+        // console.log('popularMovies:', this.popularMovies);
+        // console.log('topRatedMovies:', this.topRatedMovies);
+        // console.log('nowPlayingMovies:', this.nowPlayingMovies);
+        // console.log('upcomingMovies:', this.upcomingMovies);
 
         // -------------------------Retrieve Banner Information for each Category-------------------------
         this.extractBannerInfo(this.trendingMovies[0].id, 'trending');
@@ -159,8 +140,6 @@ export class BrowseComponent implements OnInit, AfterViewInit {
         this.extractBannerInfo(this.nowPlayingMovies[0].id, 'nowPlaying');
         this.extractBannerInfo(this.upcomingMovies[0].id, 'upcoming');
         // -------------------------End Retrieve Banner Information for each Category-------------------------
-
-        this.setBannerCarouselInformation();
       });
     // --------------------------------------------------End Retrieve Movie Carousel Data from Source of Observables--------------------------------------------------
   }
@@ -239,27 +218,12 @@ export class BrowseComponent implements OnInit, AfterViewInit {
       default:
         break;
     }
+    this.setBannerCarouselInformation();
   }
   // -------------------------End Set Banner Info for Each Category-------------------------
   // --------------------------------------------------End Retrieve Banner Information--------------------------------------------------
 
-  // --------------------------------------------------Scroll to Current Section--------------------------------------------------
-  scrollTo(
-    section:
-      | 'trending'
-      | 'tvShow'
-      | 'popular'
-      | 'topRated'
-      | 'nowPlaying'
-      | 'upcoming',
-    categoryMap: { [key: string]: ElementRef<any> }
-  ): void {
-    let targetElement: ElementRef | undefined = categoryMap[section];
-    console.log('targetElement:', targetElement);
-    targetElement?.nativeElement.scrollIntoView({ behavior: 'smooth' });
-  }
-  // --------------------------------------------------End Scroll to Current Section--------------------------------------------------
-
+  // --------------------------------------------------Set Banner and Carousel Info--------------------------------------------------
   setBannerCarouselInformation() {
     this.movieBannerCarousel = [
       {
@@ -313,4 +277,22 @@ export class BrowseComponent implements OnInit, AfterViewInit {
       },
     ];
   }
+  // --------------------------------------------------End Set Banner and Carousel Info--------------------------------------------------
+
+  // --------------------------------------------------Scroll to Current Section--------------------------------------------------
+  scrollTo(
+    section:
+      | 'trending'
+      | 'tvShow'
+      | 'popular'
+      | 'topRated'
+      | 'nowPlaying'
+      | 'upcoming',
+    categoryMap: { [key: string]: ElementRef<any> }
+  ): void {
+    let targetElement: ElementRef | undefined = categoryMap[section];
+    console.log('targetElement:', targetElement);
+    targetElement?.nativeElement.scrollIntoView({ behavior: 'smooth' });
+  }
+  // --------------------------------------------------End Scroll to Current Section--------------------------------------------------
 }

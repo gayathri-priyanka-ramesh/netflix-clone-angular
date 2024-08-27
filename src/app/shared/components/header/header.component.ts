@@ -44,18 +44,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
             this.userName,
             this.userProfileImageURL,
           ] = this.auth.retriveUserInformation();
+        // console.log('isUserSignedIn:', this.isUserSignedIn);
+        // console.log('Email:', this.userEmail);
+        // console.log('Name:', this.userName);
+        // console.log('ProfileImage:', this.userProfileImageURL);
       }
     );
-    console.log('isUserSignedIn:', this.isUserSignedIn);
-    console.log('Email:', this.userEmail);
-    console.log('Name:', this.userName);
-    console.log('ProfileImage:', this.userProfileImageURL);
   }
   // --------------------------------------------------End Extract Signed In User Information--------------------------------------------------
 
   // --------------------------------------------------Unsubscribe User Info--------------------------------------------------
   ngOnDestroy(): void {
-    if (this.userInfoSubscription) this.userInfoSubscription.unsubscribe();
+    // if (this.userInfoSubscription) this.userInfoSubscription.unsubscribe();
   }
   // --------------------------------------------------End Unsubscribe User Info--------------------------------------------------
 

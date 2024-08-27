@@ -38,7 +38,7 @@ export class AuthService {
     if (typeof sessionStorage !== 'undefined') {
       sessionStorage.setItem('signedInUser', JSON.stringify(payload));
       this.userSignedIn.next(true);
-      this.toggleSignInButton();
+      this.handleGSIButtonVisibility(false);
       this.ngZone.run(() => this.router.navigate(['browse']));
     } else
       console.warn(
@@ -82,7 +82,7 @@ export class AuthService {
       document.getElementById('gsiButton'),
       this.GsiButtonConfiguration
     );
-    console.log('Google Sign-In initialized');
+    // console.log('Google Sign-In initialized');
   }
   // -------------------------End Initialize Google Sign In-------------------------
 
@@ -92,7 +92,7 @@ export class AuthService {
       'script[src="https://accounts.google.com/gsi/client"]'
     );
     if (script) {
-      console.log('GSI Script:', script);
+      // console.log('GSI Script:', script);
       this.initializeGoogleSignIn();
     } else {
       const checkGoogleObject = setInterval(() => {
@@ -147,8 +147,8 @@ export class AuthService {
       google.accounts.id.disableAutoSelect();
       sessionStorage.removeItem('signedInUser');
       this.userSignedIn.next(false);
-      this.toggleSignInButton();
       this.ngZone.run(() => this.router.navigate(['/']));
+      this.handleGSIButtonVisibility(true);
       // console.log('User Signed Out');
     } else
       console.warn(
@@ -158,9 +158,20 @@ export class AuthService {
   // --------------------------------------------------End Sign Out--------------------------------------------------
 
   // --------------------------------------------------Toggle GSI Button--------------------------------------------------
-  toggleSignInButton(): void {
-    const gsiButton = document.getElementById('gsiButton');
-    gsiButton?.classList.toggle('hidden');
+  handleGSIButtonVisibility(visible: boolean): void {
+    if (typeof document !== 'undefined') {
+      const gsiButton = document.getElementById('gsiButton');
+      if (visible) {
+        gsiButton?.classList.remove('hidden');
+        google.accounts.id.initialize(this.IdConfiguration);
+        google.accounts.id.renderButton(gsiButton, this.GsiButtonConfiguration);
+        // console.log('Google Sign-In Button Re-rendered');
+      } else {
+        gsiButton?.classList.add('hidden');
+        // console.log('Google Sign-In Button Hidden');
+      }
+    } else
+      console.warn('Not running in the browser, Document is not available');
   }
   // --------------------------------------------------End Toggle GSI Button--------------------------------------------------
 }
